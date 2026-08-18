@@ -31,6 +31,9 @@ if(!isset($_POST['btnLogin'])){
     if($userCheck > 0 && $chk == 0){
         $row = mysqli_fetch_assoc($conn->query("SELECT * FROM `store` WHERE `user_name`='$userid' AND `pass`='$pwd'"));
         $_SESSION['store_id'] ="$row[store_id]";
+        
+        // Update last login
+        $conn->query("UPDATE `store` SET `last_login` = NOW() WHERE `store_id` = '$row[store_id]'");
 
         // $conn->query("DELETE FROM `cart` WHERE `user` != '$row[store_id]'");
         // $conn->query("DELETE FROM `return_cart` WHERE `store` != '$row[store_id]'");
