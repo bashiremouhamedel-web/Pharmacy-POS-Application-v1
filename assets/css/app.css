@@ -47,16 +47,24 @@ body {
     max-height: calc(100vh - 57px);
     overflow-x: hidden;
     overflow-y: scroll;
+    scrollbar-color: rgba(255, 255, 255, 0.55) rgba(255, 255, 255, 0.12);
+    scrollbar-width: auto;
     padding-bottom: 24px;
 }
 
 .main-sidebar .sidebar::-webkit-scrollbar {
-    width: 6px;
+    width: 10px;
+}
+
+.main-sidebar .sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .main-sidebar .sidebar::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.35);
+    border: 2px solid transparent;
     border-radius: 3px;
+    background-clip: padding-box;
 }
 
 .content-wrapper {

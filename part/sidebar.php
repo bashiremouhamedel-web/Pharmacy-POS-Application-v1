@@ -395,5 +395,21 @@
               }
             });
           }
+
+          document.querySelectorAll('.main-sidebar .has-treeview > .nav-link').forEach(function (menuLink) {
+            menuLink.addEventListener('click', function (event) {
+              event.preventDefault();
+
+              var menuItem = this.parentElement;
+              var isOpen = menuItem.classList.toggle('menu-open');
+              this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+              if (isOpen) {
+                menuItem.classList.add('active');
+              } else {
+                menuItem.classList.remove('active');
+              }
+            });
+          });
         });
       </script>
