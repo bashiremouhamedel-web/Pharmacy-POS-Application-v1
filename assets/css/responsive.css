@@ -155,10 +155,6 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .sidebar-mini .sidebar-open ~ .content-wrapper {
-        margin-left: 250px;
-    }
-
     .page-header {
         flex-direction: row;
         align-items: center;
@@ -212,17 +208,6 @@
         padding: 30px;
     }
 
-    .main-sidebar {
-        width: 250px;
-    }
-
-    .sidebar-mini .content-wrapper {
-        margin-left: 0;
-    }
-
-    .sidebar-mini.sidebar-open .content-wrapper {
-        margin-left: 250px;
-    }
 }
 
 /* Extra Large Devices (1200px and up) */

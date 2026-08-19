@@ -36,8 +36,12 @@
 }
 
 /* Typography */
-* {
-    font-family: 'Poppins', sans-serif !important;
+body,
+button,
+input,
+select,
+textarea {
+    font-family: 'Poppins', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {

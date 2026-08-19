@@ -55,6 +55,7 @@ CREATE TABLE `store` (
   `country` VARCHAR(100) DEFAULT 'Cameroon',
   `currency` VARCHAR(10) DEFAULT 'XAF',
   `store_status` VARCHAR(50) DEFAULT 'active',
+  `profile_image` VARCHAR(255) DEFAULT 'user1.jpg',
   `registration_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `last_login` DATETIME,
   UNIQUE KEY `unique_username` (`user_name`)

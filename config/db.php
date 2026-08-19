@@ -24,6 +24,12 @@
 	// Set character set
 	$conn->set_charset("utf8mb4");
 	
+	// Keep existing installations compatible with profile picture uploads.
+	$profileColumn = $conn->query("SHOW COLUMNS FROM `store` LIKE 'profile_image'");
+	if ($profileColumn && $profileColumn->num_rows === 0) {
+		$conn->query("ALTER TABLE `store` ADD `profile_image` VARCHAR(255) DEFAULT 'user1.jpg' AFTER `store_status`");
+	}
+
 	// ============================================================================
 	// APPLICATION CONFIGURATION
 	// ============================================================================

@@ -55,8 +55,12 @@
             --border: #DEE2E6;
         }
 
-        * {
-            font-family: 'Poppins', sans-serif !important;
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Poppins', sans-serif;
         }
 
         .paginate_button.page-item.active > a{

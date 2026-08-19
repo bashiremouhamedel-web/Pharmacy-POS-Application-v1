@@ -8,19 +8,26 @@
         <!-- Sidebar -->
         <div class="sidebar">
           <!-- Sidebar user panel (optional) -->
+          <?php
+            $storeProfile = getCurrentStore();
+            $profileImage = !empty($storeProfile['profile_image']) ? $storeProfile['profile_image'] : 'user1.jpg';
+            $profilePath = 'dist/img/profile/' . basename($profileImage);
+            if (!is_file(__DIR__ . '/../' . $profilePath)) {
+              $profilePath = 'dist/img/user1.jpg';
+            }
+          ?>
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <img src="dist/img/user1.jpg" class="img-circle elevation-2" alt="User Image" />
+              <form action="actions/profile-image.php" method="post" enctype="multipart/form-data" class="profile-image-form">
+                <label for="profile_image" class="profile-image-label" title="Change profile picture">
+                  <img src="<?php echo htmlspecialchars($profilePath, ENT_QUOTES, 'UTF-8'); ?>" class="img-circle elevation-2" alt="Profile picture" />
+                  <span class="profile-image-edit"><i class="fas fa-camera"></i></span>
+                </label>
+                <input type="file" id="profile_image" name="profile_image" accept="image/jpeg,image/png,image/webp" class="d-none" />
+              </form>
             </div>
             <div class="info">
-              <a href="#" class="d-block">
-                <?php 
-                  $userName = runQuery("SELECT `name` FROM `store` WHERE `store_id` = '$_SESSION[store_id]'");
-                  foreach($userName as $userName){
-                    echo $userName['name'];
-                  }
-                ?>
-              </a>
+              <a href="index.php" class="d-block"><?php echo htmlspecialchars($storeProfile['name'] ?? 'Pharmacy', ENT_QUOTES, 'UTF-8'); ?></a>
             </div>
           </div>
 
@@ -335,7 +342,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="customer-due-report.html" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>Due Customer Report</p>
                 </a>
@@ -378,3 +385,15 @@
         </div>
         <!-- /.sidebar -->
       </aside>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var profileInput = document.getElementById('profile_image');
+          if (profileInput) {
+            profileInput.addEventListener('change', function () {
+              if (this.files && this.files.length) {
+                this.form.submit();
+              }
+            });
+          }
+        });
+      </script>
