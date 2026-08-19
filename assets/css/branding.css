@@ -206,6 +206,11 @@ p {
     transition: all 0.3s ease;
 }
 
+.main-sidebar .nav-link p,
+.main-sidebar .nav-header {
+    color: #f8f9fa !important;
+}
+
 .main-sidebar .nav-link:hover,
 .main-sidebar .nav-link:focus,
 .main-sidebar .nav-link.active,
