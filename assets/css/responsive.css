@@ -75,10 +75,6 @@
         font-size: 10px;
     }
 
-    .sidebar-mini.sidebar-collapse .main-sidebar {
-        transform: translateX(-100%);
-    }
-
     .sidebar-mini.sidebar-open .main-sidebar {
         z-index: 1050;
     }
@@ -287,14 +283,18 @@
 
 /* Sidebar Menu Responsiveness */
 @media (max-width: 768px) {
-    .sidebar {
-        max-height: calc(100vh - 70px);
+    .main-sidebar .sidebar {
+        height: calc(100vh - 57px);
         overflow-y: auto;
+        overflow-x: hidden;
     }
 
-    .nav-treeview {
-        max-height: 300px;
-        overflow-y: auto;
+    .main-header {
+        left: 0;
+    }
+
+    .main-footer {
+        left: 0;
     }
 }
 

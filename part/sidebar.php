@@ -66,7 +66,7 @@
                   <p>Return</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
@@ -96,7 +96,7 @@
                   <p>Stock</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
@@ -121,7 +121,7 @@
                 </ul>
               </li>
               <li class="nav-header">PRODUCT INFORMATION</li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
@@ -145,7 +145,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
@@ -169,7 +169,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
@@ -194,7 +194,7 @@
                 </ul>
               </li>
               <li class="nav-header">EXPENSES & PAYMENT</li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
@@ -224,7 +224,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
@@ -249,14 +249,14 @@
                 </ul>
               </li>
               <!-- <li class="nav-header">PROMOTION</li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>Promotion</p>
                 </a>
               </li> -->
               <li class="nav-header">PEOPLES</li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
@@ -280,7 +280,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>

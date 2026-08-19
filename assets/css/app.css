@@ -37,8 +37,26 @@ body {
     position: fixed;
     top: 0;
     bottom: 0;
+    left: 0;
     z-index: 1038;
-    overflow-y: auto;
+    overflow: hidden;
+}
+
+.main-sidebar .sidebar {
+    height: calc(100vh - 57px);
+    max-height: calc(100vh - 57px);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-bottom: 24px;
+}
+
+.main-sidebar .sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.main-sidebar .sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 3px;
 }
 
 .content-wrapper {

@@ -199,16 +199,33 @@ p {
     font-weight: 700;
 }
 
-.nav-link {
-    color: rgba(255, 255, 255, 0.7);
+.main-sidebar .nav-link {
+    color: #f8f9fa !important;
+    cursor: pointer;
+    pointer-events: auto;
     transition: all 0.3s ease;
 }
 
-.nav-link:hover,
-.nav-link.active {
-    color: white;
-    background: rgba(23, 162, 184, 0.2);
+.main-sidebar .nav-link:hover,
+.main-sidebar .nav-link:focus,
+.main-sidebar .nav-link.active,
+.main-sidebar .nav-item.menu-open > .nav-link {
+    color: #ffffff !important;
+    background: rgba(23, 162, 184, 0.35) !important;
     border-radius: 6px;
+    text-decoration: none;
+}
+
+.main-sidebar .nav-treeview .nav-link {
+    color: #e9ecef !important;
+    background: transparent;
+}
+
+.main-sidebar .nav-treeview .nav-link:hover,
+.main-sidebar .nav-treeview .nav-link:focus,
+.main-sidebar .nav-treeview .nav-link.active {
+    color: #ffffff !important;
+    background: rgba(23, 162, 184, 0.35) !important;
 }
 
 /* Form Controls */
