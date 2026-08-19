@@ -95,8 +95,8 @@
             <td><?php echo ++$n; ?></td>
             <td><?php echo $value['product'] ?></td>
             <td><?php echo $value['qty'] ?></td>
-            <td><?php echo $value['price'] ?></td>
-            <td><?php echo $sumPrice ?></td>
+            <td><?php echo formatCurrency($value['price']); ?></td>
+            <td><?php echo formatCurrency($sumPrice); ?></td>
           </tr>
           <?php $sumPrice =0; } ?>
           </tbody>
@@ -126,23 +126,23 @@
           <table class="table">
             <tr>
               <th style="width:50%">Subtotal:</th>
-              <td><?php echo number_format((float)$total, 2, '.', ''); ?> Tk</td>
+              <td><?php echo formatCurrency($total); ?></td>
             </tr>
             <tr>
               <th>Discount:</th>
-              <td><?php echo ($invoiceSummary["discount"] < 0) ? 0.00 : number_format((float)$invoiceSummary["discount"], 2, '.', ''); ?> (<?php echo $invoiceSummary["discount_type"]; ?>)</td>
+              <td><?php echo formatCurrency(($invoiceSummary["discount"] < 0) ? 0.00 : $invoiceSummary["discount"]); ?> (<?php echo $invoiceSummary["discount_type"]; ?>)</td>
             </tr>
             <tr>
               <th>Grand Total: </th>
-              <td><?php echo $invoiceSummary["payable"]; ?> Tk</td>
+              <td><?php echo formatCurrency($invoiceSummary["payable"]); ?></td>
             </tr>
             <tr>
               <th>Paid: </th>
-              <td><?php echo $invoiceSummary["paid"]; ?> Tk</td>
+              <td><?php echo formatCurrency($invoiceSummary["paid"]); ?></td>
             </tr>
             <tr>
               <th>Due: </th>
-              <td><?php echo ($invoiceSummary["due"] <= 0) ? 0.00 : number_format((float)$invoiceSummary["due"], 2, '.', ''); ?> Tk</td>
+              <td><?php echo formatCurrency(($invoiceSummary["due"] <= 0) ? 0.00 : $invoiceSummary["due"]); ?></td>
             </tr>
           </table>
         </div>
@@ -154,7 +154,9 @@
 <!-- ./wrapper -->
 <!-- Page specific script -->
 <script>
-  window.addEventListener("load", window.print());
+  window.addEventListener('load', function () {
+    window.print();
+  });
 </script>
 </body>
 </html>

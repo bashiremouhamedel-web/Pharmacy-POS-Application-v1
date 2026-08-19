@@ -127,8 +127,8 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="name">Code</label>
-                    <input type="text" class="form-control" id="code" placeholder="Enter Product Code" name="product_code">
+                    <label for="code">Barcode</label>
+                    <input type="text" class="form-control" id="code" placeholder="Scan or enter product barcode" name="product_code">
                   </div>
                   <div class="form-group">
                     <label for="name">Shelf</label>

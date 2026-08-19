@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name">Discount (Tk)</label>
+                                <label for="name">Discount (<?php echo getStoreCurrency(); ?>)</label>
                                 <input type="text" class="form-control after-coupon" name="discounted_tkf" value="0" readonly>
                             </div>
                             <div class="form-group">
@@ -129,8 +129,8 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Price (TK)</th>
-                <th scope="col">Total (TK)</th>
+                <th scope="col">Price (<?php echo getStoreCurrency(); ?>)</th>
+                <th scope="col">Total (<?php echo getStoreCurrency(); ?>)</th>
               </tr>
             </thead>
             <tbody>
@@ -258,7 +258,7 @@
                           </div>
                           <div class="product-content">
                               <h3 class="title"><a href="#">Bonsil</a></h3>
-                              <div class="price">$49.99</div>
+                              <div class="price"><?php echo formatCurrency(49.99); ?></div>
                           </div>
                       </div>
                   </div>
@@ -277,7 +277,7 @@
                           </div>
                           <div class="product-content">
                               <h3 class="title"><a href="#">Pirfenex</a></h3>
-                              <div class="price">$45.99</div>
+                              <div class="price"><?php echo formatCurrency(45.99); ?></div>
                           </div>
                       </div>
                   </div>
@@ -297,7 +297,7 @@
                           </div>
                           <div class="product-content">
                               <h3 class="title"><a href="#">Celled</a></h3>
-                              <div class="price">$45.99</div>
+                              <div class="price"><?php echo formatCurrency(45.99); ?></div>
                           </div>
                       </div>
                   </div>
@@ -319,7 +319,7 @@
                           </div>
                           <div class="product-content">
                               <h3 class="title"><a href="#">Bonsil</a></h3>
-                              <div class="price">$49.99</div>
+                              <div class="price"><?php echo formatCurrency(49.99); ?></div>
                           </div>
                       </div>
                   </div>
@@ -338,7 +338,7 @@
                           </div>
                           <div class="product-content">
                               <h3 class="title"><a href="#">Pirfenex</a></h3>
-                              <div class="price">$45.99</div>
+                              <div class="price"><?php echo formatCurrency(45.99); ?></div>
                           </div>
                       </div>
                   </div>
@@ -357,7 +357,7 @@
                           </div>
                           <div class="product-content">
                               <h3 class="title"><a href="#">Celled</a></h3>
-                              <div class="price">$45.99</div>
+                              <div class="price"><?php echo formatCurrency(45.99); ?></div>
                           </div>
                       </div>
                   </div>

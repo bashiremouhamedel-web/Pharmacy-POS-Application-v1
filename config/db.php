@@ -39,6 +39,13 @@
 	define('SYSTEM_COUNTRY', 'Cameroon');
 	define('SYSTEM_CURRENCY', 'XAF');
 	define('SYSTEM_CURRENCY_SYMBOL', 'FCFA');
+	define('SUPPORTED_CURRENCIES', array(
+		'XAF' => 'Central African CFA franc (FCFA)',
+		'USD' => 'United States Dollar ($)',
+		'EUR' => 'Euro (€)',
+		'NGN' => 'Nigerian Naira (₦)',
+		'GHS' => 'Ghanaian Cedi (GH₵)'
+	));
 	
 	// Cameroon Payment Methods
 	define('PAYMENT_METHODS', array(
@@ -135,8 +142,17 @@
 	/**
 	 * Format Currency (XAF - Cameroon)
 	 */
+	function getStoreCurrency() {
+		$store = getCurrentStore();
+		$currency = !empty($store['currency']) ? strtoupper($store['currency']) : SYSTEM_CURRENCY;
+		return defined('SUPPORTED_CURRENCIES') && array_key_exists($currency, SUPPORTED_CURRENCIES) ? $currency : SYSTEM_CURRENCY;
+	}
+
 	function formatCurrency($amount) {
-		return number_format($amount, 2, '.', ',') . ' ' . SYSTEM_CURRENCY;
+		$currency = getStoreCurrency();
+		$prefixCurrencies = array('USD' => '$', 'EUR' => '€', 'NGN' => '₦', 'GHS' => 'GH₵');
+		$formattedAmount = number_format((float) $amount, 2, '.', ',');
+		return isset($prefixCurrencies[$currency]) ? $prefixCurrencies[$currency] . $formattedAmount : $formattedAmount . ' FCFA';
 	}
 	
 	/**
@@ -173,6 +189,4 @@
 	// ============================================================================
 	// DATABASE READY
 	// ============================================================================
-?>
-
 ?>

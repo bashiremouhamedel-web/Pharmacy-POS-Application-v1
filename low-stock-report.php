@@ -84,11 +84,16 @@ if (!isset($_SESSION['store_id'])) {
                     <tbody>
                       <?php
                       $n = 0;
-                      // $sql = $conn->query("SELECT `name` FROM `medicine` WHERE `store`='$_SESSION[store_id]'");
-                      $sql = $conn->query("SELECT a.img, a.name, a.manufacturerprice, a.price, a.qty, (a.qty*a.price) as sellvalue, b.category FROM medicine_category as b 
-                      inner join medicine as a on (b.id = a.category and a.store='$_SESSION[store_id]')");
-                      while($row = mysqli_fetch_assoc($sql)){
-                        $sql2 = mysqli_fetch_assoc($conn->query("SELECT sum(qty) as total FROM `invoice` where `product` = '$row[name]' GROUP BY 'qty'"));
+                      $storeId = (int) $_SESSION['store_id'];
+                      $sql = $conn->query("SELECT a.img, a.name, a.cost, a.price, a.qty, (a.qty * a.price) AS sellvalue, c.name AS category
+                        FROM `p_medicine` AS a
+                        LEFT JOIN `p_medicine_category` AS c ON c.id = a.category AND c.store = a.store
+                        WHERE a.store = '$storeId' AND a.qty <= 10
+                        ORDER BY a.qty ASC, a.name ASC");
+                      if ($sql) while($row = mysqli_fetch_assoc($sql)){
+                        $productName = $conn->real_escape_string($row['name']);
+                        $salesResult = $conn->query("SELECT COALESCE(SUM(qty), 0) AS total FROM `p_invoice` WHERE `product` = '$productName' AND `store` = '$storeId'");
+                        $sql2 = $salesResult ? mysqli_fetch_assoc($salesResult) : array('total' => 0);
                       ?>
                       <tr>
                         <!-- <th scope="row"><?php echo ++$n; ?></th> -->
@@ -96,12 +101,12 @@ if (!isset($_SESSION['store_id'])) {
                           <img src="dist/img/product/<?php echo $row['img']; ?>" width="50" alt="Image">
                         </td>
                         <td> <?php echo $row['name']; ?></td>
-                        <td> <?php echo $row['category']; ?></td>
-                        <td> <?php echo $row['manufacturerprice']; ?> </td>
-                        <td> <?php echo $row['price']; ?> </td>
+                        <td> <?php echo htmlspecialchars($row['category'] ?? 'Uncategorized', ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td> <?php echo formatCurrency($row['cost']); ?> </td>
+                        <td> <?php echo formatCurrency($row['price']); ?> </td>
                         <td> <?php echo isset($sql2['total']) ? $sql2['total'] : 0; ?> </td>
                         <td><strong> <?php echo $row['qty']; ?> </strong></td>
-                        <td> <?php echo $row['sellvalue']; ?> </td>
+                        <td> <?php echo formatCurrency($row['sellvalue']); ?> </td>
                       </tr>
                       <?php } ?>
                     </tbody>

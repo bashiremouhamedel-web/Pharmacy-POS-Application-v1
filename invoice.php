@@ -107,8 +107,8 @@
                       <td><?php echo ++$n; ?></td>
                       <td><?php echo $value['name'] ?></td>
                       <td><?php echo $value['quantity'] ?></td>
-                      <td><?php echo $value['price'] ?></td>
-                      <td><?php echo $sumPrice ?></td>
+                        <td><?php echo formatCurrency($value['price']); ?></td>
+                        <td><?php echo formatCurrency($sumPrice); ?></td>
                     </tr>
                     <?php $sumPrice =0; } ?>
                     </tbody>
@@ -138,23 +138,23 @@
                     <table class="table">
                       <tr>
                         <th style="width:50%">Subtotal:</th>
-                        <td><?php echo $total ?> Tk</td>
+                        <td><?php echo formatCurrency($total); ?></td>
                       </tr>
                       <tr>
                         <th>Discount (<?php echo $_SESSION["invoice_user_print"]["discount_type"]; ?>)</th>
-                        <td><?php echo ($_SESSION["invoice_user_print"]["discount"] < 0) ? 0 : $_SESSION["invoice_user_print"]["discount"]; ?> Tk</td>
+                        <td><?php echo formatCurrency(($_SESSION["invoice_user_print"]["discount"] < 0) ? 0 : $_SESSION["invoice_user_print"]["discount"]); ?></td>
                       </tr>
                       <tr>
                         <th>Grand Total: </th>
-                        <td><?php echo $_SESSION["invoice_user_print"]["after_discount"]; ?> Tk</td>
+                        <td><?php echo formatCurrency($_SESSION["invoice_user_print"]["after_discount"]); ?></td>
                       </tr>
                       <tr>
                         <th>Paid: </th>
-                        <td><?php echo $_SESSION["invoice_user_print"]["paid"]; ?> Tk</td>
+                        <td><?php echo formatCurrency($_SESSION["invoice_user_print"]["paid"]); ?></td>
                       </tr>
                       <tr>
                         <th>Due: </th>
-                        <td><?php echo ($_SESSION["invoice_user_print"]["due"] < 0) ? 0 : $_SESSION["invoice_user_print"]["due"]; ?> Tk</td>
+                        <td><?php echo formatCurrency(($_SESSION["invoice_user_print"]["due"] < 0) ? 0 : $_SESSION["invoice_user_print"]["due"]); ?></td>
                       </tr>
                     </table>
                   </div>

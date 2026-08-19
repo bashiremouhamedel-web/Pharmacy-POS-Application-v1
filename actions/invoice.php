@@ -139,6 +139,6 @@ if(isset($_POST['orderSubmit'])){
     unset($_SESSION["cart_pos_item"]);
     $_SESSION['msg'] ="Submit successfully";
     // echo "<script>window.history.back();</script>";
-    header("location:../invoice.php");
+    header("location:../invoice-print.php");
     exit();
 }

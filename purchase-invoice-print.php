@@ -95,8 +95,8 @@
             <td><?php echo ++$n; ?></td>
             <td><?php echo $value['product'] ?></td>
             <td><?php echo $value['qty'] ?></td>
-            <td><?php echo $value['price'] ?></td>
-            <td><?php echo $sumPrice ?></td>
+            <td><?php echo formatCurrency($value['price']); ?></td>
+            <td><?php echo formatCurrency($sumPrice); ?></td>
           </tr>
           <?php $sumPrice =0; } ?>
           </tbody>
@@ -126,15 +126,15 @@
           <table class="table">
             <tr>
               <th style="width:50%">Subtotal:</th>
-              <td><?php echo number_format((float)$total, 2, '.', ''); ?> Tk</td>
+              <td><?php echo formatCurrency($total); ?></td>
             </tr>
             <tr>
               <th>Discount:</th>
-              <td><?php echo ($invoiceSummary["discounted"] < 0) ? 0.00 : number_format((float)$invoiceSummary["discounted"], 2, '.', ''); ?> Tk</td>
+              <td><?php echo formatCurrency(($invoiceSummary["discounted"] < 0) ? 0.00 : $invoiceSummary["discounted"]); ?></td>
             </tr>
             <tr>
               <th>Grand Total: </th>
-              <td><?php echo $invoiceSummary["payable"]; ?> Tk</td>
+              <td><?php echo formatCurrency($invoiceSummary["payable"]); ?></td>
             </tr>
             <tr>
               <th>Paid Status: </th>
@@ -150,7 +150,9 @@
 <!-- ./wrapper -->
 <!-- Page specific script -->
 <script>
-  window.addEventListener("load", window.print());
+  window.addEventListener('load', function () {
+    window.print();
+  });
 </script>
 </body>
 </html>

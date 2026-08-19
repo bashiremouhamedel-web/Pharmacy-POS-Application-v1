@@ -189,8 +189,8 @@
                 <th scope="col" data-toggle="tooltip" title="Actions"><i class="fas fa-list"></i></th>
                 <th scope="col">Name</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Price (TK)</th>
-                <th scope="col">Total (TK)</th>
+                <th scope="col">Price (<?php echo getStoreCurrency(); ?>)</th>
+                <th scope="col">Total (<?php echo getStoreCurrency(); ?>)</th>
               </tr>
             </thead>
             <tbody id="my_data">

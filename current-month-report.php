@@ -72,43 +72,40 @@
                       <div class="card card-body bg-success">
                         <h6 class="text-white text-uppercase">Sell Amount</h6>
                         <?php
-                            $row = mysqli_fetch_assoc($conn->query("SELECT IFNULL(sum(total_price), 0) AS `monthlysales` FROM p_invoice_summary
-                                WHERE month(order_date) = '$month' AND year(order_date) = '$year' AND `store` = '$_SESSION[store_id]'
-                                group by year(order_date),month(order_date)"));
+                            $row = mysqli_fetch_assoc($conn->query("SELECT COALESCE(SUM(total_price), 0) AS `monthlysales` FROM p_invoice_summary
+                              WHERE month(order_date) = '$month' AND year(order_date) = '$year' AND `store` = '$_SESSION[store_id]'"));
                         ?>
-                        <p class="fs-18 fw-700">৳ <?php echo $row['monthlysales']; ?></p>
+                        <p class="fs-18 fw-700"><?php echo formatCurrency($row['monthlysales']); ?></p>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="card card-body bg-primary">
                         <h6 class="text-white text-uppercase">Sell Profit</h6>
                         <?php 
-                            $result = mysqli_fetch_assoc($conn->query("SELECT IFNULL(SUM(`total_price`-`total_cost`), 0) as profit FROM `p_invoice_summary` 
-                                WHERE month(order_date) = '$month' AND year(order_date) = '$year' AND `store` = '$_SESSION[store_id]'
-                                group by year(order_date),month(order_date)"));
+                            $result = mysqli_fetch_assoc($conn->query("SELECT COALESCE(SUM(`total_price`-`total_cost`), 0) AS profit FROM `p_invoice_summary`
+                              WHERE month(order_date) = '$month' AND year(order_date) = '$year' AND `store` = '$_SESSION[store_id]'"));
                         ?>
-                        <p class="fs-18 fw-700">৳ <?php echo $result['profit']; ?> </p>
+                        <p class="fs-18 fw-700"><?php echo formatCurrency($result['profit']); ?> </p>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="card card-body bg-danger">
                         <h6 class="text-white text-uppercase">Purchase Cost</h6>
                         <?php 
-                            $result = mysqli_fetch_assoc($conn->query("SELECT SUM(`amount`) as amt FROM `p_payment` 
-                                WHERE month(payment_date) = '$month' AND year(payment_date) = '$year' AND `store` = '$_SESSION[store_id]'
-                                group by year(payment_date),month(payment_date)"));
+                            $result = mysqli_fetch_assoc($conn->query("SELECT COALESCE(SUM(`amount`), 0) AS amt FROM `p_payment`
+                              WHERE month(payment_date) = '$month' AND year(payment_date) = '$year' AND `store` = '$_SESSION[store_id]'"));
                         ?>
-                        <p class="fs-18 fw-700">৳ <?php echo !empty($result['amt']) ? $result22['amt'] : 0; ?></p>
+                        <p class="fs-18 fw-700"><?php echo formatCurrency(!empty($result['amt']) ? $result['amt'] : 0); ?></p>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="card card-body bg-dark">
                         <h6 class="text-white text-uppercase">Expense</h6>
                         <?php 
-                            $result = mysqli_fetch_assoc($conn->query("SELECT SUM(`amount`) as expense FROM `p_expense` 
-                            WHERE month(expense_date) = '$month' AND year(expense_date) = '$year' AND `store` = '$_SESSION[store_id]' group by year(`expense_date`),month(`expense_date`)"));
+                            $result = mysqli_fetch_assoc($conn->query("SELECT COALESCE(SUM(`amount`), 0) AS expense FROM `p_expense`
+                            WHERE month(expense_date) = '$month' AND year(expense_date) = '$year' AND `store` = '$_SESSION[store_id]'"));
                         ?>
-                        <p class="fs-18 fw-700">৳ <?php echo !empty($result['expense']) ? $result['expense'] : 0; ?></p>
+                        <p class="fs-18 fw-700"><?php echo formatCurrency(!empty($result['expense']) ? $result['expense'] : 0); ?></p>
                       </div>
                     </div>
                   </div>
@@ -154,7 +151,7 @@
                       </tbody>
                       <tfoot class="bg-light">
                         <tr>
-                          <td colspan="4" class="text-right"><strong>Total Sales (tk): </strong></td>
+                          <td colspan="4" class="text-right"><strong>Total Sales (<?php echo getStoreCurrency(); ?>): </strong></td>
                           <td><strong id="totalSales"> 0.00 </strong></td>
                         </tr>
                       </tfoot>
@@ -197,7 +194,7 @@
                       </tbody>
                       <tfoot class="bg-light">
                         <tr>
-                          <td colspan="4" class="text-right"><strong> Total (tk): </strong> </td>
+                          <td colspan="4" class="text-right"><strong> Total (<?php echo getStoreCurrency(); ?>): </strong> </td>
                           <td colspan="1"><strong id="totalExpense"> 0.00 </strong> </td>
                           <td></td>
                         </tr>
@@ -241,7 +238,7 @@
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td colspan="3" class="text-right"> <strong> Total (tk):</strong></td>
+                            <td colspan="3" class="text-right"> <strong> Total (<?php echo getStoreCurrency(); ?>):</strong></td>
                             <td> <strong id="totalPurchase"> 0 </strong> </td>
                             <td></td>
                             <td></td>
@@ -285,7 +282,7 @@
                       </tbody>
                       <tfoot>
                         <tr>
-                          <td colspan="4" class="text-right"><strong>Total (tk): </strong> </td>
+                          <td colspan="4" class="text-right"><strong>Total (<?php echo getStoreCurrency(); ?>): </strong> </td>
                           <td> <strong id="totalReceived"> 0.00 </strong> </td>
                         </tr>
                       </tfoot>

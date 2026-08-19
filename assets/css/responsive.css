@@ -164,7 +164,7 @@
         flex: initial;
     }
 
-    .modal {
+    .modal.show {
         display: flex !important;
         align-items: center;
     }
@@ -285,9 +285,13 @@
 @media (max-width: 768px) {
     .main-sidebar .sidebar {
         height: calc(100vh - 57px);
-        overflow-y: auto;
+        overflow-y: hidden;
         overflow-x: hidden;
         scrollbar-width: auto;
+    }
+
+    .main-sidebar .sidebar-menu-scroll {
+        overflow-y: auto;
     }
 
     .main-header {

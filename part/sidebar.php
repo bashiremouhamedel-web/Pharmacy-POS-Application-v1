@@ -1,3 +1,9 @@
+<?php
+  $currentPage = basename($_SERVER['PHP_SELF']);
+  $isCurrentPage = function ($pages) use ($currentPage) {
+    return in_array($currentPage, (array) $pages, true);
+  };
+?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="index.php" class="brand-link">
@@ -44,30 +50,31 @@
           </div>
 
           <!-- Sidebar Menu -->
+          <div class="sidebar-menu-scroll">
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-              <li class="nav-item">
-                <a href="pos.php" class="nav-link">
+              <li class="nav-item <?php echo $isCurrentPage('pos.php') ? 'active' : ''; ?>">
+                <a href="pos.php" class="nav-link <?php echo $isCurrentPage('pos.php') ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>POS</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="sales.php" class="nav-link">
+              <li class="nav-item <?php echo $isCurrentPage('sales.php') ? 'active' : ''; ?>">
+                <a href="sales.php" class="nav-link <?php echo $isCurrentPage('sales.php') ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>Sales</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="return.php" class="nav-link">
+              <li class="nav-item <?php echo $isCurrentPage('return.php') ? 'active' : ''; ?>">
+                <a href="return.php" class="nav-link <?php echo $isCurrentPage('return.php') ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>Return</p>
                 </a>
               </li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+              <li class="nav-item has-treeview <?php echo $isCurrentPage(array('add-purchase.php', 'manage-purchase.php')) ? 'menu-open active' : ''; ?>">
+                <a href="manage-purchase.php" class="nav-link <?php echo $isCurrentPage(array('add-purchase.php', 'manage-purchase.php')) ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
                     Purchase
@@ -90,14 +97,14 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
-                <a href="stock.php" class="nav-link">
+              <li class="nav-item <?php echo $isCurrentPage('stock.php') ? 'active' : ''; ?>">
+                <a href="stock.php" class="nav-link <?php echo $isCurrentPage('stock.php') ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>Stock</p>
                 </a>
               </li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+              <li class="nav-item has-treeview <?php echo $isCurrentPage(array('add-damage.php', 'damage.php')) ? 'menu-open active' : ''; ?>">
+                <a href="damage.php" class="nav-link <?php echo $isCurrentPage(array('add-damage.php', 'damage.php')) ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
                     Damages
@@ -121,8 +128,8 @@
                 </ul>
               </li>
               <li class="nav-header">PRODUCT INFORMATION</li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+              <li class="nav-item has-treeview <?php echo $isCurrentPage(array('add-product.php', 'manage-products.php', 'barcode.php', 'qrcode.php')) ? 'menu-open active' : ''; ?>">
+                <a href="manage-products.php" class="nav-link <?php echo $isCurrentPage(array('add-product.php', 'manage-products.php', 'barcode.php', 'qrcode.php')) ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
                     Products
@@ -143,10 +150,22 @@
                       <p>Manage Products</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="barcode.php" class="nav-link">
+                      <i class="fas fa-barcode nav-icon"></i>
+                      <p>Product Barcodes</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="qrcode.php" class="nav-link">
+                      <i class="fas fa-qrcode nav-icon"></i>
+                      <p>Product QR Codes</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+              <li class="nav-item has-treeview <?php echo $isCurrentPage(array('add-category.php', 'manage-category.php')) ? 'menu-open active' : ''; ?>">
+                <a href="manage-category.php" class="nav-link <?php echo $isCurrentPage(array('add-category.php', 'manage-category.php')) ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
                     Category
@@ -169,8 +188,8 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+              <li class="nav-item has-treeview <?php echo $isCurrentPage(array('add-brand.php', 'manage-brand.php')) ? 'menu-open active' : ''; ?>">
+                <a href="manage-brand.php" class="nav-link <?php echo $isCurrentPage(array('add-brand.php', 'manage-brand.php')) ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
                     Brands
@@ -194,8 +213,8 @@
                 </ul>
               </li>
               <li class="nav-header">EXPENSES & PAYMENT</li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+              <li class="nav-item has-treeview <?php echo $isCurrentPage(array('expense.php', 'manage-expense.php', 'expense-category.php')) ? 'menu-open active' : ''; ?>">
+                <a href="manage-expense.php" class="nav-link <?php echo $isCurrentPage(array('expense.php', 'manage-expense.php', 'expense-category.php')) ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
                     Expenses
@@ -224,8 +243,8 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+              <li class="nav-item has-treeview <?php echo $isCurrentPage(array('add-payment.php', 'manage-payment.php')) ? 'menu-open active' : ''; ?>">
+                <a href="manage-payment.php" class="nav-link <?php echo $isCurrentPage(array('add-payment.php', 'manage-payment.php')) ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
                     Payments
@@ -250,14 +269,14 @@
               </li>
               <!-- <li class="nav-header">PROMOTION</li>
               <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+                <a href="manage-customer.php" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>Promotion</p>
                 </a>
               </li> -->
               <li class="nav-header">PEOPLES</li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+              <li class="nav-item has-treeview <?php echo $isCurrentPage(array('add-customer.php', 'manage-customer.php')) ? 'menu-open active' : ''; ?>">
+                <a href="manage-customer.php" class="nav-link <?php echo $isCurrentPage(array('add-customer.php', 'manage-customer.php')) ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
                     Customers
@@ -280,8 +299,8 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+              <li class="nav-item has-treeview <?php echo $isCurrentPage(array('add-supplier.php', 'manage-supplier.php', 'new-supply.php', 'manage-supply.php')) ? 'menu-open active' : ''; ?>">
+                <a href="manage-supplier.php" class="nav-link <?php echo $isCurrentPage(array('add-supplier.php', 'manage-supplier.php', 'new-supply.php', 'manage-supply.php')) ? 'active' : ''; ?>">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
                     Suppliers
@@ -359,6 +378,12 @@
                   <p>Top Customer</p>
                 </a>
               </li>
+              <li class="nav-item <?php echo $isCurrentPage('settings.php') ? 'active' : ''; ?>">
+                <a href="settings.php" class="nav-link <?php echo $isCurrentPage('settings.php') ? 'active' : ''; ?>">
+                  <i class="nav-icon fas fa-cog"></i>
+                  <p>Settings</p>
+                </a>
+              </li>
               <!-- <li class="nav-item">
                 <a href="" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
@@ -381,7 +406,16 @@
               </li> -->
             </ul>
           </nav>
+          </div>
           <!-- /.sidebar-menu -->
+          <div class="sidebar-footer">
+            <a href="settings.php" class="sidebar-footer-link <?php echo $isCurrentPage('settings.php') ? 'active' : ''; ?>">
+              <i class="fas fa-cog"></i><span>Settings</span>
+            </a>
+            <a href="actions/logout.php?logout=<?php echo base64_encode($_SESSION['store_id']); ?>" class="sidebar-footer-link">
+              <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+            </a>
+          </div>
         </div>
         <!-- /.sidebar -->
       </aside>
@@ -398,9 +432,15 @@
 
           document.querySelectorAll('.main-sidebar .has-treeview > .nav-link').forEach(function (menuLink) {
             menuLink.addEventListener('click', function (event) {
-              event.preventDefault();
-
               var menuItem = this.parentElement;
+              var clickedArrow = event.target.closest('.right');
+
+              if (!clickedArrow) {
+                return;
+              }
+
+              event.preventDefault();
+              event.stopPropagation();
               var isOpen = menuItem.classList.toggle('menu-open');
               this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 
